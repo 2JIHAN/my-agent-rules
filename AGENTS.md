@@ -10,6 +10,7 @@
 | 문체 | [rules/style.md](rules/style.md) | 콜론, 가운뎃점 사용 규칙 (단일 원본) |
 | 문서화 | [rules/docs.md](rules/docs.md) | README/docs 구조, 업데이트 타이밍 |
 | 코딩 | [rules/coding.md](rules/coding.md) | 프로젝트 초기화 (git init), behavioral guidelines |
+| Docker | [rules/docker.md](rules/docker.md) | ghostdesk 컨테이너 기동 시 이미지 확인, 임시 컨테이너 기본값 |
 | Notion | [rules/notion.md](rules/notion.md) | 규칙 로딩, 룰 피드백, 기본 저장 위치 |
 | 권한 + 도구 경로 | [rules/permissions.md](rules/permissions.md) | allow/deny 베이스라인, 도구별 설정 파일 경로 |
 

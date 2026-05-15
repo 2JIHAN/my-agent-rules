@@ -10,6 +10,14 @@
 
 이 점검은 세션당 한 번이면 충분하다. 매 요청마다 반복하지 않는다.
 
+## Git 커밋 author
+
+- 모든 git 커밋의 author email 은 **`2jihan000@gmail.com`** (GitHub 계정 `2JIHAN`) 을 사용한다.
+- author name 은 `JIHAN`.
+- `git commit` 시 `-c user.email=...` / `-c user.name=...` 을 임의로 덮어쓰지 않는다. 사용자가 명시적으로 다른 계정을 지정한 경우에만 예외.
+- `qhdus08233@gmail.com` 은 Claude 사용 계정일 뿐 커밋용이 아니다. 환경에서 자동 노출되더라도 커밋 author 로 쓰면 안 된다.
+- 글로벌 `git config user.email` 은 이미 올바르게 설정돼 있으므로 그대로 두면 된다. 별도 override 만 피한다.
+
 ---
 
 Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
