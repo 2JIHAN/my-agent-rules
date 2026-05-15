@@ -45,6 +45,16 @@
       // 파괴적 파일 삭제
       "bash:rm -rf *",
       "bash:rm -r *",
+      "bash:rm /",
+      "bash:find / -delete",
+      "bash:shred *",
+
+      // 시스템 이동/변조
+      "bash:mv / *",
+
+      // 파이프 실행 (위험한 원격 스크립트 실행)
+      "bash:curl * | bash",
+      "bash:wget * | bash",
 
       // git 파괴 작업
       "bash:git push --force *",
@@ -58,11 +68,18 @@
       "bash:reboot",
       "bash:shutdown *",
 
-      // 디스크 파괴
+      // 디스크/파티션 파괴
       "bash:dd *",
       "bash:mkfs *",
       "bash:diskutil eraseDisk*",
       "bash:diskutil eraseVolume*",
+      "bash:mkswap *",
+      "bash:fdisk *",
+      "bash:parted *",
+
+      // 네트워크/방화벽 무력화
+      "bash:iptables -F",
+      "bash:ufw disable",
 
       // 자동화 파괴
       "bash:crontab -r*",
