@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# oh-my-claudecode runtime state
+.omc/
