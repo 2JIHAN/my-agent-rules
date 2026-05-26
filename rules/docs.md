@@ -15,7 +15,7 @@
 
 원칙,
 
-- 파일·라인 참조는 상대경로 markdown 링크로 (`[name](path)`, `[name:42](path#L42)`).
+- 파일, 라인 참조는 상대경로 markdown 링크로 (`[name](path)`, `[name:42](path#L42)`).
 - 문서는 코드를 그대로 옮겨 적지 않는다. WHY, 의도, 외부에서 안 보이는 제약을 적는다.
 - 프로젝트 성격에 따라 위 목록 중 해당 없는 파일은 만들지 않는다. 새 카테고리가 필요하면 `docs/` 아래 추가하고 README 링크 표에 등록한다.
 - `host/` 처럼 서브트리를 깊게 읽지 않은 상태로 문서를 쓸 때는 그 사실을 문서 끝에 명시한다.
@@ -34,7 +34,7 @@
 
 - **폴더 구조가 바뀜**, 디렉터리 추가/삭제/이름 변경 → `structure.md` 트리와 README 링크.
 - **실행 단위(scope, env, entry binary, service) 추가/삭제/이름 변경** → `apps.md` 와 README 표.
-- **빌드·실행 명령 변경**, build flag, env, 빌드 시스템 옵션, 부팅 절차 → README 빠른 시작, `structure.md` 빌드 섹션.
+- **빌드, 실행 명령 변경**, build flag, env, 빌드 시스템 옵션, 부팅 절차 → README 빠른 시작, `structure.md` 빌드 섹션.
 - **공용 모듈의 public API 시그니처 변경** → `structure.md` 모듈 섹션.
 - **하드웨어 핀맵, 보드 설정, 외부 의존 호스트/포트 변경** → `hardware.md` 또는 `structure.md` config 섹션.
 - **새 의존성(라이브러리, MCP 서버, 외부 서비스) 추가/제거** → 가장 가까운 문서.
