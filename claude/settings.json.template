@@ -1,0 +1,190 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Write",
+      "Read",
+      "Edit",
+      "NotebookEdit",
+      "WebSearch",
+      "WebFetch",
+      "TodoWrite",
+      "Glob",
+      "Grep",
+      "Skill",
+      "mcp__notion__*",
+      "mcp__claude_ai_Gmail__*",
+      "mcp__claude_ai_Google_Calendar__*",
+      "mcp__claude_ai_Google_Drive__*",
+      "mcp__claude_ai_Vercel__*",
+      "mcp__drawio__*",
+      "mcp__ghostdesk__*"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/)",
+      "Bash(rm -rf ~/*)",
+      "Bash(rm -rf $HOME)",
+      "Bash(rm -rf $HOME/)",
+      "Bash(rm -rf $HOME/*)",
+      "Bash(rm -rf .)",
+      "Bash(rm -rf ./)",
+      "Bash(rm -rf ..)",
+      "Bash(rm -rf ../)",
+      "Bash(rm -rf .git)",
+      "Bash(rm -rf .git/)",
+      "Bash(rm -rf .git/*)",
+      "Bash(rm -fr /)",
+      "Bash(rm -fr /*)",
+      "Bash(rm -fr ~)",
+      "Bash(rm -fr ~/)",
+      "Bash(rm -fr ~/*)",
+      "Bash(rm -fr $HOME)",
+      "Bash(rm -fr $HOME/)",
+      "Bash(rm -fr $HOME/*)",
+      "Bash(rm -fr .)",
+      "Bash(rm -fr ./)",
+      "Bash(rm -fr ..)",
+      "Bash(rm -fr ../)",
+      "Bash(rm -fr .git)",
+      "Bash(rm -fr .git/)",
+      "Bash(rm -fr .git/*)",
+      "Bash(rm -r /)",
+      "Bash(rm -r /*)",
+      "Bash(rm -r ~)",
+      "Bash(rm -r ~/)",
+      "Bash(rm -r ~/*)",
+      "Bash(rm -r $HOME)",
+      "Bash(rm -r $HOME/)",
+      "Bash(rm -r $HOME/*)",
+      "Bash(rm -r .)",
+      "Bash(rm -r ./)",
+      "Bash(rm -r ..)",
+      "Bash(rm -r ../)",
+      "Bash(rm -r .git)",
+      "Bash(rm -r .git/)",
+      "Bash(rm -r .git/*)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)",
+      "Bash(reboot)",
+      "Bash(shutdown *)",
+      "Bash(dd *)",
+      "Bash(mkfs *)",
+      "Bash(diskutil eraseDisk*)",
+      "Bash(diskutil eraseVolume*)",
+      "Bash(crontab -r*)",
+      "Bash(chmod -R 777 *)",
+      "Bash(chmod 777 *)",
+      "Bash(chown -R *)",
+      "Bash(git clean -fd*)",
+      "Bash(git clean -fdx*)",
+      "Bash(git checkout .)",
+      "Bash(git restore .)",
+      "Bash(killall *)",
+      "Bash(kill -9 1)",
+      "mcp__claude_ai_Google_Calendar__delete_event"
+    ],
+    "defaultMode": "default"
+  },
+  "model": "opus",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOME__/.claude/skills/gstack/bin/gstack-session-update"
+          },
+          {
+            "type": "command",
+            "command": "printf '[caveman 모드 ON — 이번 세션 모든 응답을 caveman full 모드로 작성 중. 해제: \"stop caveman\" 또는 \"normal mode\"]\\n\\n'; cat __HOME__/.agents/skills/caveman/SKILL.md"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "MSG=$(jq -r '.message // \"입력 대기 중\"'); /opt/homebrew/bin/terminal-notifier -title 'Claude Code' -message \"$MSG\" -sender com.cmuxterm.app -sound Glass >/dev/null 2>&1 || true"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'__HOME__/tools/trace/.venv/bin/python3' '__HOME__/tools/trace/engine/session_logger.py'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'__HOME__/tools/trace/.venv/bin/python3' '__HOME__/tools/trace/engine/live_session_hook.py'"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs"
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "oh-my-claudecode@omc": true,
+    "jihan-agents@jihan-agents": true,
+    "frontend-design@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "omc": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/Yeachan-Heo/oh-my-claudecode.git"
+      }
+    },
+    "jihan-agents": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/2JIHAN/jihan-agent-source.git"
+      }
+    }
+  },
+  "outputStyle": "default",
+  "syntaxHighlightingDisabled": false,
+  "effortLevel": "high",
+  "theme": "auto",
+  "preferredNotifChannel": "terminal_bell",
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
+  "preferences": {
+    "language": "ko",
+    "answerStyle": {
+      "explanationLanguage": "ko",
+      "codeCommentsLanguage": "en",
+      "variableNaming": "en_snake_case"
+    },
+    "verbosity": "medium"
+  }
+}
