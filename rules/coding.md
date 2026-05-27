@@ -27,6 +27,15 @@
 - `.gitignore` 에 등재된 항목 (`.omc/`, `.DS_Store`) 은 커밋하지 않는다.
 - 이 자동화는 `~/.agent` 디렉터리 내부 변경에만 한정된다. 다른 저장소의 커밋과 푸시는 기존 원칙대로 사용자가 명시적으로 요청할 때만 한다.
 
+## `~/.agent` 로 동기화하는 머신 종속 설정
+
+`~/.agent` 는 규칙뿐 아니라 머신 간 동기화 대상인 Claude Code 설정과 글로벌 스킬 목록도 담는다. 둘 다 `my-agent-rules` remote 로 동기화된다.
+
+- **Claude Code 설정** (`~/.agent/claude/`), `settings.json.template` (홈 경로를 `__HOME__` 로 치환) + `sync-claude.sh`. 다른 머신에서 받기: `sync-claude.sh apply`. 이 머신 변경을 기록: `sync-claude.sh capture` 후 commit. 자세한 건 [claude/README.md](../claude/README.md).
+- **글로벌 스킬** (`~/.agent/skills/`), `npx skills` 글로벌 락의 추적 사본 `skill-lock.json` + `sync-skills.sh`. 다른 머신에서 재현: `sync-skills.sh apply` (락의 출처 repo 별로 `npx skills add` 재실행). 이 머신 스킬 변경을 기록: `sync-skills.sh capture` 후 commit. 자세한 건 [skills/README.md](../skills/README.md).
+
+`~/.claude/settings.json` 을 바꾸거나 (`/config`, 플러그인 설치 포함) `npx skills` 로 스킬을 추가, 삭제한 뒤에는 해당 `capture` 를 돌려 repo 기록을 최신으로 맞춘다. capture 결과는 위 자동 커밋, 푸시 규칙에 따라 그대로 commit, push 한다.
+
 ---
 
 Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
