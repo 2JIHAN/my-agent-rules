@@ -103,7 +103,7 @@
           },
           {
             "type": "command",
-            "command": "printf 'SESSION INSTRUCTION: 이번 세션 첫 assistant 응답에서만 맨 앞에 아래 블록을 그대로 먼저 출력한 뒤 본 답변을 이어가라.\\n🦴🦴🦴🦴🦴🦴🦴🦴🦴🦴🦴\\n🦴caveman 모드 적용중🦴\\n🦴🦴🦴🦴🦴🦴🦴🦴🦴🦴🦴\\n\\n'; cat __HOME__/.agents/skills/caveman/SKILL.md"
+            "command": "printf 'SESSION INSTRUCTION: 이번 세션 첫 assistant 응답에서만 맨 앞에 아래 블록을 그대로 먼저 출력하고, 반드시 빈 줄을 하나 둔 뒤 본 답변을 이어가라.\\n🦴🦴🦴caveman 모드 적용중🦴🦴🦴\\n\\n'; cat __HOME__/.agents/skills/caveman/SKILL.md"
           }
         ]
       }
