@@ -9,7 +9,8 @@
 | 파일 | 역할 |
 |---|---|
 | `settings.json.template` | 홈 경로를 `__HOME__` 로 치환한 설정 원본. 이것만 git 추적. |
-| `sync-claude.sh` | 템플릿과 실제 `~/.claude/settings.json` 사이 양방향 변환. |
+| `hooks/` | `~/.claude/hooks/` 훅 스크립트의 추적 사본. 홈 경로는 `__HOME__` 로 치환됨. |
+| `sync-claude.sh` | 템플릿, 훅 디렉터리와 실제 `~/.claude/` 사이 양방향 변환. |
 
 ## 빠른 시작
 
@@ -33,13 +34,13 @@ git -C ~/.agent commit -m "chore: update claude settings template"
 git -C ~/.agent push
 ```
 
-`capture` 는 현재 `~/.claude/settings.json` 의 `$HOME` 경로를 `__HOME__` 로 되돌려 템플릿에 덮어쓴다.
+`capture` 는 현재 `~/.claude/settings.json` 의 `$HOME` 경로를 `__HOME__` 로 되돌려 템플릿에 덮어쓰고, `~/.claude/hooks/` 스크립트도 `hooks/` 로 회수한다. `add` 시 `claude/hooks/` 도 함께 스테이징한다.
 
 ## 동작 원리
 
-- `apply` = `sed 's#__HOME__#$HOME#g' 템플릿 > settings.json`
-- `capture` = `sed 's#$HOME#__HOME__#g' settings.json > 템플릿`
-- 양쪽 모두 `jq empty` 로 생성 결과가 valid JSON 인지 검사한 뒤에만 기록한다.
+- `apply` = `sed 's#__HOME__#$HOME#g' 템플릿 > settings.json`, 이어서 `hooks/*` 를 같은 치환으로 `~/.claude/hooks/` 에 기록.
+- `capture` = `sed 's#$HOME#__HOME__#g' settings.json > 템플릿`, 이어서 `~/.claude/hooks/*` 를 역치환으로 `hooks/` 에 회수.
+- settings 는 `jq empty` 로 valid JSON 인지 검사한 뒤에만 기록한다. 훅 스크립트는 실행 비트를 보존한다.
 
 ## 주의
 

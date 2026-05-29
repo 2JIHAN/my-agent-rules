@@ -137,6 +137,10 @@
           {
             "type": "command",
             "command": "'__HOME__/tools/trace/.venv/bin/python3' '__HOME__/tools/trace/engine/live_session_hook.py'"
+          },
+          {
+            "type": "command",
+            "command": "python3 __HOME__/.claude/hooks/style-check.py"
           }
         ]
       }
@@ -144,7 +148,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "node ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs"
+    "command": "sh ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud-cache.sh ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs"
   },
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
@@ -174,6 +178,7 @@
   "outputStyle": "default",
   "syntaxHighlightingDisabled": false,
   "effortLevel": "high",
+  "tui": "default",
   "theme": "auto",
   "preferredNotifChannel": "terminal_bell",
   "remoteControlAtStartup": true,
