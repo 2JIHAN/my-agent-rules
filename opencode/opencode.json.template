@@ -1,0 +1,70 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "read": "allow",
+    "edit": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "webfetch": "allow",
+    "websearch": "allow",
+    "codesearch": "allow",
+    "task": "allow",
+    "skill": "allow",
+    "external_directory": {
+      "~/.agent/**": "allow",
+      "~/.config/opencode/**": "allow",
+      "~/.claude/CLAUDE.md": "allow",
+      "~/.claude/settings.json": "allow",
+      "~/.gemini/GEMINI.md": "allow",
+      "~/.gemini/settings.json": "allow",
+      "~/.codex/AGENTS.md": "allow",
+      "~/.codex/config.toml": "allow"
+    },
+    "bash": {
+      "*": "allow",
+      "sudo": "deny",
+      "sudo *": "deny",
+      "rm -f *": "deny",
+      "rm -rf *": "deny",
+      "rm -fr *": "deny",
+      "rm -Rf *": "deny",
+      "rm -rF *": "deny",
+      "rm -r *": "deny",
+      "git push --force *": "deny",
+      "git reset --hard *": "deny",
+      "git clean -fd*": "deny",
+      "git clean -fdx*": "deny",
+      "git checkout .": "deny",
+      "git restore .": "deny",
+      "reboot": "deny",
+      "shutdown *": "deny",
+      "dd *": "deny",
+      "mkfs *": "deny",
+      "diskutil eraseDisk*": "deny",
+      "diskutil eraseVolume*": "deny",
+      "crontab -r*": "deny",
+      "chmod -R 777 *": "deny",
+      "chmod 777 *": "deny",
+      "chown -R *": "deny",
+      "killall *": "deny",
+      "kill -9 1": "deny"
+    }
+  },
+  "formatter": true,
+  "mcp": {
+    "web-search": {
+      "type": "local",
+      "command": ["npx", "-y", "@zhafron/mcp-web-search"],
+      "enabled": true,
+      "environment": {
+        "DEFAULT_SEARCH_PROVIDER": "duckduckgo",
+        "HTTP_TIMEOUT": "15000"
+      }
+    },
+    "notion": {
+      "type": "remote",
+      "url": "https://mcp.notion.com/mcp",
+      "enabled": true
+    }
+  }
+}
