@@ -1,0 +1,51 @@
+model = "gpt-5.5"
+model_reasoning_effort = "medium"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+project_doc_fallback_filenames = ["CLAUDE.md", "GEMINI.md"]
+
+[sandbox_workspace_write]
+network_access = true
+writable_roots = [
+    "__HOME__/agent-workspace",
+    "/private/tmp",
+    "__TMPDIR__",
+]
+
+[tui]
+notifications = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 2
+
+[projects."__HOME__/agent-workspace"]
+trust_level = "trusted"
+
+[projects."__HOME__/agent-workspace/vscode-editor-title-button"]
+trust_level = "trusted"
+
+[projects."__HOME__/PlatformIO/Projects/esp32-s3-n16r8-test"]
+trust_level = "trusted"
+
+[projects."__HOME__"]
+trust_level = "trusted"
+
+[plugins."google-drive@openai-curated"]
+enabled = true
+
+# BEGIN OMC MANAGED MCP REGISTRY
+
+[mcp_servers.ghostdesk]
+url = "http://localhost:3000/mcp"
+type = "http"
+
+[mcp_servers.notion]
+url = "https://mcp.notion.com/mcp"
+type = "http"
+
+[mcp_servers.trace]
+command = "__HOME__/tools/trace/.venv/bin/python3"
+args = ["__HOME__/tools/trace/server/main.py"]
+type = "stdio"
+
+# END OMC MANAGED MCP REGISTRY
