@@ -14,6 +14,10 @@
 - `git commit` 에 `-c user.email=...` / `-c user.name=...` override 를 임의로 붙이지 않는다. 글로벌 config 가 이미 맞다. 사용자가 다른 계정을 명시한 경우만 예외.
 - `qhdus08233@gmail.com` 은 Claude 사용 계정일 뿐 커밋 author 로 쓰지 않는다. 환경에 노출돼도 쓰면 안 된다.
 
+## 커밋 메시지 스타일
+
+- 커밋 메시지는 항상 `caveman-commit` 스킬로 생성한다. 사용자가 별도 지시 없이 커밋을 요청해도 기본으로 이 스킬을 거쳐 메시지를 만든다. 스킬이 없는 환경에서는 같은 정신 (Conventional Commits, subject ≤50자, "왜"가 자명하지 않을 때만 body) 을 수동 적용.
+
 ## `~/.agent` 저장소 (원격 `2JIHAN/my-agent-rules`)
 
 **이 섹션은 `~/.agent` 에만 적용된다. 다른 프로젝트엔 적용하지 않는다.**
