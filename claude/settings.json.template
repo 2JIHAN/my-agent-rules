@@ -94,6 +94,16 @@
   },
   "model": "opus",
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash __HOME__/.claude/hooks/commit-keyword-reminder.sh"
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "hooks": [
