@@ -10,7 +10,14 @@
 |---|---|
 | `settings.json.template` | 홈 경로를 `__HOME__` 로 치환한 설정 원본. 이것만 git 추적. |
 | `hooks/` | `~/.claude/hooks/` 훅 스크립트의 추적 사본. 홈 경로는 `__HOME__` 로 치환됨. |
-| `sync-claude.sh` | 템플릿, 훅 디렉터리와 실제 `~/.claude/` 사이 양방향 변환. |
+| `CLAUDE.import.md` | `~/.claude/CLAUDE.md` 에 주입할 `@~/.agent/AGENTS.md` import 블록. `AGENT-RULES` 마커로 감싼다. |
+| `sync-claude.sh` | 템플릿, 훅 디렉터리, CLAUDE.md import 블록과 실제 `~/.claude/` 사이 양방향 변환. |
+
+## CLAUDE.md import 블록
+
+`~/.claude/CLAUDE.md` 본문은 OMC 가 관리하므로 통째로 덮지 않는다. `apply` 는 `CLAUDE.import.md` 의 블록을 `<!-- AGENT-RULES:START -->` / `<!-- AGENT-RULES:END -->` 마커 사이에만 주입한다. 마커가 이미 있으면 그 자리를 교체 (멱등), 없으면 OMC import (`<!-- OMC:IMPORT:START -->`) 바로 앞에 삽입한다. 이 블록이 있어야 세션 시작 시 `~/.agent/AGENTS.md` 와 `rules/*.md` 가 자동 로드된다 — 없으면 전역 규칙이 안 불려온다. 블록엔 머신 종속 경로가 없어 `__HOME__` 치환은 하지 않는다 (`@~/.agent/...` 그대로). `capture` 는 마커 사이를 `CLAUDE.import.md` 로 회수한다.
+
+`omc update` 등으로 CLAUDE.md 가 재생성돼 블록이 사라지면 `apply` 를 다시 돌리면 복구된다.
 
 ## 빠른 시작
 
