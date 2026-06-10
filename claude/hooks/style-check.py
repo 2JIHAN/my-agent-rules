@@ -13,6 +13,7 @@ Code-fence interiors are ignored for the middot check.
 """
 
 import json
+import os
 import re
 import sys
 
@@ -91,12 +92,14 @@ def main():
     if not violations:
         sys.exit(0)
 
-    reason = (
-        "문체 규칙 위반 감지. 마지막 응답 고치고 다시 출력.\n"
-        + "\n".join("- " + v for v in violations[:20])
-        + "\n\n규칙: 가운뎃점 대신 쉼표. 코드블록/목록 도입 레이블 뒤 콜론 제거."
-    )
-    print(json.dumps({"decision": "block", "reason": reason}))
+    # 강제 교정 안 함. 위반만 조용히 로그에 남기고 통과시킴 (채팅 흔적 0).
+    try:
+        log_path = os.path.join(os.path.dirname(__file__), "style-violations.log")
+        with open(log_path, "a", encoding="utf-8") as fh:
+            for v in violations[:20]:
+                fh.write(v + "\n")
+    except OSError:
+        pass
     sys.exit(0)
 
 
